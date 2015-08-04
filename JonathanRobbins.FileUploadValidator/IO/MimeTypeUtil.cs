@@ -5,6 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using JonathanRobbins.FileUploadValidator.Enums.IO;
+using Sitecore.Diagnostics;
 
 namespace JonathanRobbins.FileUploadValidator.IO
 {
@@ -126,5 +127,4 @@ public class MimeTypeUtil
             return mime;
         }
     }
-}
 }

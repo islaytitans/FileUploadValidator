@@ -9,6 +9,9 @@ using System.Web.UI;
 using System.Web.UI.WebControls;
 using JonathanRobbins.FileUploadValidator.Enums.IO;
 using JonathanRobbins.FileUploadValidator.IO;
+using Sitecore.Data.Items;
+using Sitecore.Diagnostics;
+using Sitecore.Form.Core.Validators;
 
 namespace JonathanRobbins.FileUploadValidator.Webforms.Validators
 {
@@ -37,8 +40,8 @@ namespace JonathanRobbins.FileUploadValidator.Webforms.Validators
             bool validMime = ValidateMimeType(fileUploaded);
             if (!validMime) return false;
 
-            bool validSize = ValidateFileSize(fileUploaded);
-            if (!validSize) return false;
+            //bool validSize = ValidateFileSize(fileUploaded);
+            //if (!validSize) return false;
 
             return true;
         }
@@ -58,6 +61,7 @@ namespace JonathanRobbins.FileUploadValidator.Webforms.Validators
             }
             catch (Exception ex)
             {
+                valid = false;
                 Log.Error("Error occurred when determining mime type of file", ex, this);
                 throw;
             }
@@ -102,39 +106,39 @@ namespace JonathanRobbins.FileUploadValidator.Webforms.Validators
 
         private const int DefaultFileSizeLimit = 3000000;
 
-        private int? _fileSizeLimitInBytes;
-        private int FileSizeLimitInBytes
-        {
-            get
-            {
-                if (_fileSizeLimitInBytes == null || _fileSizeLimitInBytes == DefaultFileSizeLimit)
-                {
-                    _fileSizeLimitInBytes = DefaultFileSizeLimit;
+        //private int? _fileSizeLimitInBytes;
+        //private int FileSizeLimitInBytes
+        //{
+        //    get
+        //    {
+        //        if (_fileSizeLimitInBytes == null || _fileSizeLimitInBytes == DefaultFileSizeLimit)
+        //        {
+        //            _fileSizeLimitInBytes = DefaultFileSizeLimit;
 
-                    Item fileUploadConfig = ItemNodes.SiteConfig.Children.FirstOrDefault(x => x.TemplateID == Enumerators.SitecoreConfig.Guids.Templates.FileUploadConfigId);
-                    if (fileUploadConfig != null && fileUploadConfig.Fields[Enumerators.SitecoreConfig.Fields.Global.ImageFileSizeLimit] != null
-                        && !string.IsNullOrEmpty(fileUploadConfig[Enumerators.SitecoreConfig.Fields.Global.ImageFileSizeLimit]))
-                    {
-                        int sizeInMegaBytes;
-                        bool success =
-                            int.TryParse(fileUploadConfig[Enumerators.SitecoreConfig.Fields.Global.ImageFileSizeLimit],
-                                out sizeInMegaBytes);
+        //            Item fileUploadConfig = ItemNodes.SiteConfig.Children.FirstOrDefault(x => x.TemplateID == Enumerators.SitecoreConfig.Guids.Templates.FileUploadConfigId);
+        //            if (fileUploadConfig != null && fileUploadConfig.Fields[Enumerators.SitecoreConfig.Fields.Global.ImageFileSizeLimit] != null
+        //                && !string.IsNullOrEmpty(fileUploadConfig[Enumerators.SitecoreConfig.Fields.Global.ImageFileSizeLimit]))
+        //            {
+        //                int sizeInMegaBytes;
+        //                bool success =
+        //                    int.TryParse(fileUploadConfig[Enumerators.SitecoreConfig.Fields.Global.ImageFileSizeLimit],
+        //                        out sizeInMegaBytes);
 
-                        if (success)
-                            _fileSizeLimitInBytes = sizeInMegaBytes * 1000000;
+        //                if (success)
+        //                    _fileSizeLimitInBytes = sizeInMegaBytes * 1000000;
 
-                    }
-                }
+        //            }
+        //        }
 
-                return _fileSizeLimitInBytes.Value;
-            }
-        }
+        //        return _fileSizeLimitInBytes.Value;
+        //    }
+        //}
 
-        private bool ValidateFileSize(HttpPostedFile postedFile)
-        {
-            var sizeInBytes = postedFile.ContentLength;
+        //private bool ValidateFileSize(HttpPostedFile postedFile)
+        //{
+        //    var sizeInBytes = postedFile.ContentLength;
 
-            return (sizeInBytes <= FileSizeLimitInBytes);
-        }
+        //    return (sizeInBytes <= FileSizeLimitInBytes);
+        //}
     }
 }
