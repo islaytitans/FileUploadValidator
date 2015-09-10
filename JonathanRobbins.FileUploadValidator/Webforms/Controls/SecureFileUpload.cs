@@ -21,6 +21,71 @@ namespace JonathanRobbins.FileUploadValidator.Webforms.Controls
         protected ListItemCollection selectedItems;
         protected ListBox list = new ListBox();
 
+        [VisualFieldType(typeof(SelectionModeField))]
+        [VisualProperty("Selection Mode:", 400)]
+        [VisualCategory("List")]
+        [DefaultValue("Single")]
+        public string SelectionMode
+        {
+            get
+            {
+                return list.SelectionMode.ToString();
+            }
+            set
+            {
+                list.SelectionMode = (ListSelectionMode)Enum.Parse(typeof(ListSelectionMode), value, true);
+            }
+        }
+
+        [VisualProperty("Rows:", 450)]
+        [DefaultValue(4)]
+        public int Rows
+        {
+            get
+            {
+                return this.list.Rows;
+            }
+            set
+            {
+                this.list.Rows = value;
+            }
+        }
+
+        public override string ID
+        {
+            get
+            {
+                return this.list.ID;
+            }
+            set
+            {
+                this.title.ID = value + "text";
+                this.list.ID = value;
+                this.upload.ID = value;
+                base.ID = value;
+            }
+        }
+
+        protected System.Web.UI.WebControls.ListControl InnerListControl
+        {
+            get
+            {
+                return (System.Web.UI.WebControls.ListControl)this.list;
+            }
+        }
+
+        public SecureFileUpload()
+            : this(HtmlTextWriterTag.Div)
+        {
+        }
+
+        private SecureFileUpload(HtmlTextWriterTag tag)
+            : base(tag)
+        {
+            //this.CssClass = base.baseCssClassName;
+            this.list.Rows = 4;
+        }
+
         [PersistenceMode(PersistenceMode.InnerProperty)]
         [DesignerSerializationVisibility(DesignerSerializationVisibility.Content)]
         [Browsable(false)]
@@ -67,20 +132,9 @@ namespace JonathanRobbins.FileUploadValidator.Webforms.Controls
             }
         }
 
-        [VisualFieldType(typeof(SelectionModeField))]
-        [VisualProperty("Selection Mode:", 400)]
-        [VisualCategory("List")]
-        [DefaultValue("Single")]
-        public string SelectionMode
-        {
-            get
-            {
-                return list.SelectionMode.ToString();
-            }
-            set
-            {
-                list.SelectionMode = (ListSelectionMode)Enum.Parse(typeof(ListSelectionMode), value, true);
-            }
-        }
+        #region ListControl
+
+
+        #endregion 
     }
 }
