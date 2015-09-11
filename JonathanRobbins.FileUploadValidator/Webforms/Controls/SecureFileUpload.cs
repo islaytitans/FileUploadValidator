@@ -10,131 +10,111 @@ using System.Text;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using Sitecore.Form.Core.Media;
 using Sitecore.Form.Web.UI.Controls;
 using ListItemCollection = System.Web.UI.WebControls.ListItemCollection;
 
 namespace JonathanRobbins.FileUploadValidator.Webforms.Controls
 {
-    public class SecureFileUpload : UploadFile
+    [Adapter(typeof(FileUploadAdapter))]
+    public class SecureFileUpload : List
     {
-        protected ListItemCollection mimeItems;
-        protected ListItemCollection selectedItems;
-        protected ListBox list = new ListBox();
-
-        [VisualFieldType(typeof(SelectionModeField))]
-        [VisualProperty("Selection Mode:", 400)]
-        [VisualCategory("List")]
-        [DefaultValue("Single")]
-        public string SelectionMode
-        {
-            get
-            {
-                return list.SelectionMode.ToString();
-            }
-            set
-            {
-                list.SelectionMode = (ListSelectionMode)Enum.Parse(typeof(ListSelectionMode), value, true);
-            }
-        }
-
-        [VisualProperty("Rows:", 450)]
-        [DefaultValue(4)]
-        public int Rows
-        {
-            get
-            {
-                return this.list.Rows;
-            }
-            set
-            {
-                this.list.Rows = value;
-            }
-        }
+        private static readonly string baseCssClassName = "scfFileUploadBorder";
+        protected Panel generalPanel = new Panel();
+        protected System.Web.UI.WebControls.Label title = new System.Web.UI.WebControls.Label();
+        protected FileUpload upload = new FileUpload();
+        private string uploadDir = "/sitecore/media library";
 
         public override string ID
         {
-            get
-            {
-                return this.list.ID;
-            }
+            get { return this.upload.ID; }
             set
             {
                 this.title.ID = value + "text";
-                this.list.ID = value;
                 this.upload.ID = value;
-                base.ID = value;
+                base.ID = value + "scope";
             }
         }
 
-        protected System.Web.UI.WebControls.ListControl InnerListControl
+        [VisualFieldType(typeof(SelectDirectoryField))]
+        [VisualProperty("Upload To:", 0)]
+        [DefaultValue("/sitecore/media library")]
+        [VisualCategory("Upload")]
+        public string UploadTo
+        {
+            get { return this.uploadDir; }
+            set { this.uploadDir = value; }
+        }
+
+        public override ControlResult Result
         {
             get
             {
-                return (System.Web.UI.WebControls.ListControl)this.list;
+                if (this.upload.HasFile)
+                    return new ControlResult(this.ControlName,
+                        (object)new PostedFile(this.upload.FileBytes, this.upload.FileName, this.UploadTo), "medialink");
+                return new ControlResult(this.ControlName, (object)null, string.Empty);
             }
+            set { }
         }
 
-        public SecureFileUpload()
+        public string Title
+        {
+            get { return this.title.Text; }
+            set { this.title.Text = value; }
+        }
+
+        [VisualProperty("CSS Class:", 600)]
+        [VisualFieldType(typeof(CssClassField))]
+        [DefaultValue("scfFileUploadBorder")]
+        public new string CssClass
+        {
+            get { return base.CssClass; }
+            set { base.CssClass = value; }
+        }
+
+        protected override Control ValidatorContainer
+        {
+            get { return (Control)this; }
+        }
+
+        protected override Control InnerValidatorContainer
+        {
+            get { return (Control)this.generalPanel; }
+        }
+
+        public SecureFileUpload2(HtmlTextWriterTag tag)
+            : base()
+        {
+            this.CssClass = SecureFileUpload2.baseCssClassName;
+        }
+
+        public SecureFileUpload2()
             : this(HtmlTextWriterTag.Div)
         {
         }
 
-        private SecureFileUpload(HtmlTextWriterTag tag)
-            : base(tag)
+        public override void RenderControl(HtmlTextWriter writer)
         {
-            //this.CssClass = base.baseCssClassName;
-            this.list.Rows = 4;
+            this.DoRender(writer);
         }
 
-        [PersistenceMode(PersistenceMode.InnerProperty)]
-        [DesignerSerializationVisibility(DesignerSerializationVisibility.Content)]
-        [Browsable(false)]
-        [VisualCategory("List")]
-        [VisualFieldType(typeof(ListField))]
-        [TypeConverter(typeof(ListItemCollectionConverter))]
-        [Description("Collection of mimeItems.")]
-        [VisualProperty("mimeItems:", 100)]
-        public ListItemCollection Items
+        protected virtual void DoRender(HtmlTextWriter writer)
         {
-            get
-            {
-                return this.mimeItems;
-            }
-            set
-            {
-                this.mimeItems = value;
-            }
+            base.RenderControl(writer);
         }
 
-        [Browsable(false)]
-        public char Separator
+        protected override void OnInit(EventArgs e)
         {
-            get
-            {
-                return '|';
-            }
+            this.upload.CssClass = "scfFileUpload";
+            this.help.CssClass = "scfFileUploadUsefulInfo";
+            this.title.CssClass = "scfFileUploadLabel";
+            this.title.AssociatedControlID = this.upload.ID;
+            this.generalPanel.CssClass = "scfFileUploadGeneralPanel";
+            this.Controls.AddAt(0, (Control)this.generalPanel);
+            this.Controls.AddAt(0, (Control)this.title);
+            this.generalPanel.Controls.AddAt(0, (Control)this.help);
+            this.generalPanel.Controls.AddAt(0, (Control)this.upload);
         }
-
-        [TypeConverter(typeof(ListItemCollectionConverter))]
-        [VisualFieldType(typeof(SelectedValueField))]
-        [VisualCategory("List")]
-        [Browsable(false)]
-        [VisualProperty("Selected Value:", 200)]
-        public ListItemCollection SelectedValue
-        {
-            get
-            {
-                return this.selectedItems;
-            }
-            set
-            {
-                this.selectedItems = value;
-            }
-        }
-
-        #region ListControl
-
-
-        #endregion 
     }
 }

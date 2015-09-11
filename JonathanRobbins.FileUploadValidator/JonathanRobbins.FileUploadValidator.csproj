@@ -56,7 +56,6 @@
     <Compile Include="IO\MimeTypeUtil.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Webforms\Controls\SecureFileUpload.cs" />
-    <Compile Include="Webforms\Controls\SecureFileUpload2.cs" />
     <Compile Include="Webforms\Validators\FileUploadValidator.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
