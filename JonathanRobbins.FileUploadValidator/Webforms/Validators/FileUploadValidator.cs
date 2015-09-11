@@ -43,6 +43,8 @@ namespace JonathanRobbins.FileUploadValidator.Webforms.Validators
             //bool validSize = ValidateFileSize(fileUploaded);
             //if (!validSize) return false;
 
+            //Branch commit test
+
             return true;
         }
 
