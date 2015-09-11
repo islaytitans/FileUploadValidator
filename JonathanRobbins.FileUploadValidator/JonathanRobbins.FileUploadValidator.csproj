@@ -52,8 +52,11 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Enums\FieldNames.cs" />
     <Compile Include="Enums\IO\MimeType.cs" />
+    <Compile Include="Interfaces\IMimeTypeUtil.cs" />
     <Compile Include="IO\MimeTypeUtil.cs" />
+    <Compile Include="Models\FileType.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Webforms\Controls\SecureFileUpload.cs" />
     <Compile Include="Webforms\Validators\FileUploadValidator.cs" />
