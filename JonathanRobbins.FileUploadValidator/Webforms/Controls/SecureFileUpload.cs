@@ -17,9 +17,9 @@ using ListItemCollection = System.Web.UI.WebControls.ListItemCollection;
 
 namespace JonathanRobbins.FileUploadValidator.Webforms.Controls
 {
-    [Adapter(typeof(ListControlAdapter))]
+    //[Adapter(typeof(ListControlAdapter))]
     [ListAdapter("Items", typeof(ListItemsAdapter))]
-    //[Adapter(typeof(FileUploadAdapter))]
+    [Adapter(typeof(FileUploadAdapter))]
     public class SecureFileUpload : ValidateControl, IHasTitle
     {
         private static readonly string baseCssClassName = "scfFileUploadBorder";
@@ -135,6 +135,7 @@ namespace JonathanRobbins.FileUploadValidator.Webforms.Controls
         [VisualCategory("List")]
         [VisualFieldType(typeof(ListField))]
         [TypeConverter(typeof(ListItemCollectionConverter))]
+        //[DefaultValue("/sitecore/system/Modules/Web Forms for Marketers/Settings/Meta data/File Types")]
         [Description("Collection of items.")]
         [VisualProperty("Items:", 100)]
         public ListItemCollection Items
