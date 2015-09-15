@@ -26,6 +26,7 @@ namespace JonathanRobbins.FileUploadValidator.Webforms.Controls
         protected Panel generalPanel = new Panel();
         protected System.Web.UI.WebControls.Label title = new System.Web.UI.WebControls.Label();
         protected FileUpload upload = new FileUpload();
+        private int _fileSizeLimit;
         private ListItemCollection _items;
         private ListItemCollection _selectedItems;
         private string _uploadDir = "/sitecore/media library";
@@ -153,7 +154,7 @@ namespace JonathanRobbins.FileUploadValidator.Webforms.Controls
         [VisualCategory("List")]
         [Browsable(false)]
         [VisualProperty("Selected Values:", 450)]
-        public ListItemCollection SelectedValues
+        public ListItemCollection SelectedValue
         {
             get
             {
@@ -169,7 +170,7 @@ namespace JonathanRobbins.FileUploadValidator.Webforms.Controls
         {
             set
             {
-                //this.SelectedValues = (ListItemCollection)value;
+                //this.SelectedValue = (ListItemCollection)value;
             }
         }
 
@@ -200,6 +201,25 @@ namespace JonathanRobbins.FileUploadValidator.Webforms.Controls
             //}
             //this.title.AssociatedControlID = this.InnerListControl.ID;
             base.OnPreRender(e);
+        }
+
+        [DefaultValue(5)]
+        [VisualFieldType(typeof(EditField))]
+        [VisualProperty("File size limit (MB) :", 5)]
+        [VisualCategory("Upload")]
+        public string FileSizeLimit
+        {
+            get
+            {
+                return this._fileSizeLimit.ToString();
+            }
+            set
+            {
+                int result;
+                if (!int.TryParse(value, out result))
+                    result = 5;
+                this._fileSizeLimit = result;
+            }
         }
     }
 }

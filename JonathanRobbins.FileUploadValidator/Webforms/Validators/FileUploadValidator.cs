@@ -98,7 +98,7 @@ namespace JonathanRobbins.FileUploadValidator.Webforms.Validators
         private List<FileType> DeterminePermitedMimeTypes()
         {
             var fileTypes = new List<FileType>();
-            
+
             if (FieldItem != null)
             {
                 var itemIds = new List<string>();
@@ -114,10 +114,10 @@ namespace JonathanRobbins.FileUploadValidator.Webforms.Validators
                         var itemNodes = regexItems.Matches(selectedValueNode.ToString());
 
                         itemIds.AddRange(from Match itemNode in itemNodes
-                            where
-                                itemNode.Groups[1] != null && !string.IsNullOrEmpty(itemNode.Groups[1].Value) &&
-                                TryParseGuid(itemNode.Groups[1].Value)
-                            select itemNode.Groups[1].Value);
+                                         where
+                                             itemNode.Groups[1] != null && !string.IsNullOrEmpty(itemNode.Groups[1].Value) &&
+                                             TryParseGuid(itemNode.Groups[1].Value)
+                                         select itemNode.Groups[1].Value);
                     }
 
                     if (itemIds.Any())
@@ -133,7 +133,7 @@ namespace JonathanRobbins.FileUploadValidator.Webforms.Validators
 
         private static byte[] ReadFully(Stream input)
         {
-            byte[] buffer = new byte[16*1024];
+            byte[] buffer = new byte[16 * 1024];
             using (MemoryStream ms = new MemoryStream())
             {
                 int read;
@@ -186,9 +186,9 @@ namespace JonathanRobbins.FileUploadValidator.Webforms.Validators
 
         public bool TryParseGuid(string guidString)
         {
-            if (guidString == null) 
+            if (guidString == null)
                 throw new ArgumentNullException("guidString");
-            
+
             try
             {
                 var guid = new Guid(guidString);
