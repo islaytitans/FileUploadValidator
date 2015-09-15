@@ -24,6 +24,7 @@ namespace JonathanRobbins.FileUploadValidator.Webforms.Validators
     public class FileUploadValidator : FormCustomValidator
     {
         private IMimeTypeUtil _mimeTypeUtil = new MimeTypeUtil();
+        private int MegaByteByteRaio = 1048576;
 
         private Item _fieldItem;
         private Item FieldItem
@@ -67,8 +68,8 @@ namespace JonathanRobbins.FileUploadValidator.Webforms.Validators
             bool validMime = ValidateMimeType(fileUploaded);
             if (!validMime) return false;
 
-            //bool validSize = ValidateFileSize(fileUploaded);
-            //if (!validSize) return false;
+            bool validSize = ValidateFileSize(fileUploaded);
+            if (!validSize) return false;
 
             return true;
         }
@@ -114,9 +115,9 @@ namespace JonathanRobbins.FileUploadValidator.Webforms.Validators
                         var itemNodes = regexItems.Matches(selectedValueNode.ToString());
 
                         itemIds.AddRange(from Match itemNode in itemNodes
-                                         where
-                                             itemNode.Groups[1] != null && !string.IsNullOrEmpty(itemNode.Groups[1].Value) &&
-                                             TryParseGuid(itemNode.Groups[1].Value)
+                                         where itemNode.Groups[1] != null 
+                                         && !string.IsNullOrEmpty(itemNode.Groups[1].Value) 
+                                         && TryParseGuid(itemNode.Groups[1].Value)
                                          select itemNode.Groups[1].Value);
                     }
 
@@ -145,46 +146,39 @@ namespace JonathanRobbins.FileUploadValidator.Webforms.Validators
             }
         }
 
-        private IEnumerable<string> _permittedMimeTypes;
+        private bool ValidateFileSize(HttpPostedFile postedFile)
+        {
+            int fileSizeLimitinBytes = DetermineFileSizeLimit();
 
-        private const int DefaultFileSizeLimit = 3000000;
+            int sizeInBytes = postedFile.ContentLength;
 
-        //private int? _fileSizeLimitInBytes;
-        //private int FileSizeLimitInBytes
-        //{
-        //    get
-        //    {
-        //        if (_fileSizeLimitInBytes == null || _fileSizeLimitInBytes == DefaultFileSizeLimit)
-        //        {
-        //            _fileSizeLimitInBytes = DefaultFileSizeLimit;
+            return (sizeInBytes <= fileSizeLimitinBytes);
+        }
 
-        //            Item fileUploadConfig = ItemNodes.SiteConfig.Children.FirstOrDefault(x => x.TemplateID == Enumerators.SitecoreConfig.Guids.Templates.FileUploadConfigId);
-        //            if (fileUploadConfig != null && fileUploadConfig.Fields[Enumerators.SitecoreConfig.Fields.Global.ImageFileSizeLimit] != null
-        //                && !string.IsNullOrEmpty(fileUploadConfig[Enumerators.SitecoreConfig.Fields.Global.ImageFileSizeLimit]))
-        //            {
-        //                int sizeInMegaBytes;
-        //                bool success =
-        //                    int.TryParse(fileUploadConfig[Enumerators.SitecoreConfig.Fields.Global.ImageFileSizeLimit],
-        //                        out sizeInMegaBytes);
+        private int DetermineFileSizeLimit()
+        {
+            int fileSizeLimitinBytes = 0;
 
-        //                if (success)
-        //                    _fileSizeLimitInBytes = sizeInMegaBytes * 1000000;
+            var regexfileSizeLimit = new Regex(@"<filesizelimit>(.*?)</filesizelimit>".ToLower());
+            var fileSizeLimitNodes = regexfileSizeLimit.Matches(FieldItem["Parameters"].ToLower());
 
-        //            }
-        //        }
+            if (fileSizeLimitNodes.Count > 0)
+            {
+                double intOut = 0;
+                double fileSizeLimitinMegaBytes = 0;
+                fileSizeLimitinMegaBytes = (from Match limit in fileSizeLimitNodes
+                    where limit.Groups[1] != null 
+                    && !string.IsNullOrEmpty(limit.Groups[1].Value)
+                    && double.TryParse(limit.Groups[1].Value, out intOut)
+                    select int.Parse((limit.Groups[1].Value))).FirstOrDefault();
 
-        //        return _fileSizeLimitInBytes.Value;
-        //    }
-        //}
+                fileSizeLimitinBytes = MegaBytesToBytes(Convert.ToInt32(fileSizeLimitinMegaBytes));
+            }
 
-        //private bool ValidateFileSize(HttpPostedFile postedFile)
-        //{
-        //    var sizeInBytes = postedFile.ContentLength;
+            return fileSizeLimitinBytes;
+        }
 
-        //    return (sizeInBytes <= FileSizeLimitInBytes);
-        //}
-
-        public bool TryParseGuid(string guidString)
+        private bool TryParseGuid(string guidString)
         {
             if (guidString == null)
                 throw new ArgumentNullException("guidString");
@@ -198,6 +192,11 @@ namespace JonathanRobbins.FileUploadValidator.Webforms.Validators
             {
                 throw new Exception("Failed to parse the Guid of File Type Item - ensure the Value field of the Items property of the SecureFileUpload WFFM Field is set to __Id");
             }
+        }
+
+        private int MegaBytesToBytes(int megaBytes)
+        {
+            return megaBytes*MegaByteByteRaio;
         }
     }
 }
