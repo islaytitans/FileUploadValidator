@@ -5,11 +5,13 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using JonathanRobbins.FileUploadValidator.Enums.IO;
+using JonathanRobbins.FileUploadValidator.Interfaces;
+using JonathanRobbins.FileUploadValidator.Models;
 using Sitecore.Diagnostics;
 
 namespace JonathanRobbins.FileUploadValidator.IO
 {
-public class MimeTypeUtil
+    public class MimeTypeUtil : IMimeTypeUtil
     {
         private readonly byte[] BMP = { 66, 77 };
         private readonly byte[] DOC = { 208, 207, 17, 224, 161, 177, 26, 225 };
@@ -29,12 +31,12 @@ public class MimeTypeUtil
         private readonly byte[] WAV_AVI = { 82, 73, 70, 70 };
         private readonly byte[] WMV_WMA = { 48, 38, 178, 117, 142, 102, 207, 17, 166, 217, 0, 170, 0, 98, 206, 108 };
         private readonly byte[] ZIP_DOCX = { 80, 75, 3, 4 };
- 
+
         public string GetMimeType(byte[] file, string fileName)
         {
             Assert.IsNotNull(file, "the file can not be null");
             Assert.IsNotNullOrEmpty(fileName, "the fileName can not be null");
- 
+
             string mime = MimeType.DefaultUnknown;
             string extension = Path.GetExtension(fileName) != null
                                    ? Path.GetExtension(fileName).ToUpper()
@@ -125,6 +127,59 @@ public class MimeTypeUtil
             }
  
             return mime;
+        }
+
+        public FileType MimeTypeAllowed(byte[] file, string fileName, List<FileType> permittedMimeTypes)
+        {
+            FileType uploadedFileType = null;
+
+            string extension = Path.GetExtension(fileName) != null
+                                   ? Path.GetExtension(fileName).ToUpper()
+                                   : string.Empty;
+
+            var matchedByByte = new List<FileType>();
+            var matchedByByteAndExtension = new List<FileType>();
+
+            foreach (var permittedMimeType in permittedMimeTypes)
+            {
+                int byteCount = permittedMimeType.ByteArray.Count();
+
+                if (file.Take(byteCount).SequenceEqual(permittedMimeType.ByteArray))
+                {
+                    if (!string.IsNullOrEmpty(permittedMimeType.FileExtension))
+                    {
+                        if (permittedMimeType.FileExtension.Equals(extension, StringComparison.InvariantCultureIgnoreCase))
+                        {
+                            matchedByByteAndExtension.Add(new FileType(permittedMimeType.MimeType, file, extension));
+                        }
+                    }
+                    else
+                    {
+                        matchedByByte.Add(new FileType(permittedMimeType.MimeType, file, extension));
+                    }
+                }
+            }
+
+            uploadedFileType = matchedByByteAndExtension.Any()
+                ? matchedByByteAndExtension.FirstOrDefault()
+                : matchedByByte.Any() ? matchedByByte.FirstOrDefault() : null;
+
+            return uploadedFileType;
+        }
+
+        public byte[] CsvToByteArray(string byteArrayString)
+        {
+            int[] intArray = byteArrayString.Split(new char[] { ',' }, StringSplitOptions.RemoveEmptyEntries).Select(int.Parse).ToArray();
+
+            var byteArray = new byte[intArray.Length];
+            int j = 0;
+            foreach (var i in intArray)
+            {
+                byteArray[j] = (byte)i;
+                j++;
+            }
+
+            return byteArray;
         }
     }
 }
