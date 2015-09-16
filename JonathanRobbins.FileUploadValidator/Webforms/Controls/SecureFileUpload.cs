@@ -135,7 +135,7 @@ namespace JonathanRobbins.FileUploadValidator.Webforms.Controls
         [VisualCategory("List")]
         [VisualFieldType(typeof(ListField))]
         [TypeConverter(typeof(ListItemCollectionConverter))]
-        [DefaultValue("%3cquery+t%3d%22fast%22%3e%3cvalue%3e%2fsitecore%2fsystem%2fModules%2fWeb+Forms+for+Marketers%2fSettings%2fMeta+data%2fFile+Types%2f*%3c%2fvalue%3e%3c%2fquery%3e")]
+        [DefaultValue("%3cquery+t%3d%22root%22+vf%3d%22__ID%22%3e%3cvalue%3e%7b7C75E0B5-3C17-4471-9F81-0490306EC71E%7d%3c%2fvalue%3e%3c%2fquery%3e")]
         [Description("Collection of items.")]
         [VisualProperty("Items:", 100)]
         public ListItemCollection Items
