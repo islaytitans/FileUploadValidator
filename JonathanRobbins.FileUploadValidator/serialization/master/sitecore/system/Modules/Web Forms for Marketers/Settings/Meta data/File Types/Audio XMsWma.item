@@ -1,0 +1,79 @@
+----item----
+version: 1
+id: {8F22820D-19A0-4B19-BDC2-936873F4ACD4}
+database: master
+path: /sitecore/system/Modules/Web Forms for Marketers/Settings/Meta data/File Types/Audio XMsWma
+parent: {7C75E0B5-3C17-4471-9F81-0490306EC71E}
+name: Audio XMsWma
+master: {00000000-0000-0000-0000-000000000000}
+template: {BCC032FD-24C7-4308-A9BA-393D810812E1}
+templatekey: File type
+
+----version----
+language: en
+version: 1
+revision: 90ab8059-968c-4b9f-84cb-6f39070939d2
+
+----field----
+field: {CA574E39-6D39-452A-A7E3-621F9E15E206}
+name: Mime type
+key: mime type
+content-length: 14
+
+audio/x-ms-wma
+----field----
+field: {8BFD0FAC-8252-4B4D-B0B7-BE3C6A0F2BD7}
+name: Byte Array
+key: byte array
+content-length: 70
+
+48, 38, 178, 117, 142, 102, 207, 17, 166, 217, 0, 170, 0, 98, 206, 108
+----field----
+field: {1D8926BB-B070-4CEA-B587-F951BB360AE2}
+name: File Extension
+key: file extension
+content-length: 4
+
+.WMA
+----field----
+field: {52807595-0F8F-4B20-8D2A-CB71D28C6103}
+name: __Owner
+key: __owner
+content-length: 14
+
+sitecore\admin
+----field----
+field: {25BED78C-4957-4165-998A-CA1B52F67497}
+name: __Created
+key: __created
+content-length: 16
+
+20150911T090401Z
+----field----
+field: {5DD74568-4D4B-44C1-B513-0AF5F4CDA34F}
+name: __Created by
+key: __created by
+content-length: 14
+
+sitecore\admin
+----field----
+field: {8CDC337E-A112-42FB-BBB4-4143751E123F}
+name: __Revision
+key: __revision
+content-length: 36
+
+90ab8059-968c-4b9f-84cb-6f39070939d2
+----field----
+field: {D9CF14B1-FA16-4BA6-9288-E8A174D4D522}
+name: __Updated
+key: __updated
+content-length: 35
+
+20150911T090443:635775590838967565Z
+----field----
+field: {BADD9CF9-53E0-4D0C-BCC0-2D784C282F6A}
+name: __Updated by
+key: __updated by
+content-length: 14
+
+sitecore\admin

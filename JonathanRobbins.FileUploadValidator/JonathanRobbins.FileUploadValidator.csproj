@@ -61,6 +61,36 @@
     <Compile Include="Webforms\Controls\SecureFileUpload.cs" />
     <Compile Include="Webforms\Validators\FileUploadValidator.cs" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="serialization\master\sitecore\system\Modules\Web Forms for Marketers\Sample forms\Upload a Secure File.item" />
+    <None Include="serialization\master\sitecore\system\Modules\Web Forms for Marketers\Sample forms\Upload a Secure File\Upload a file.item" />
+    <None Include="serialization\master\sitecore\system\Modules\Web Forms for Marketers\Settings\Field Types\Custom\Secure File Upload.item" />
+    <None Include="serialization\master\sitecore\system\Modules\Web Forms for Marketers\Settings\Meta data\File Types.item" />
+    <None Include="serialization\master\sitecore\system\Modules\Web Forms for Marketers\Settings\Meta data\File Types\Application Docx.item" />
+    <None Include="serialization\master\sitecore\system\Modules\Web Forms for Marketers\Settings\Meta data\File Types\Application MsWord.item" />
+    <None Include="serialization\master\sitecore\system\Modules\Web Forms for Marketers\Settings\Meta data\File Types\Application Ogg.item" />
+    <None Include="serialization\master\sitecore\system\Modules\Web Forms for Marketers\Settings\Meta data\File Types\Application Pdf.item" />
+    <None Include="serialization\master\sitecore\system\Modules\Web Forms for Marketers\Settings\Meta data\File Types\Application XBittorrent.item" />
+    <None Include="serialization\master\sitecore\system\Modules\Web Forms for Marketers\Settings\Meta data\File Types\Application XFontTtf.item" />
+    <None Include="serialization\master\sitecore\system\Modules\Web Forms for Marketers\Settings\Meta data\File Types\Application XMsDownload.item" />
+    <None Include="serialization\master\sitecore\system\Modules\Web Forms for Marketers\Settings\Meta data\File Types\Application XRarCompressed.item" />
+    <None Include="serialization\master\sitecore\system\Modules\Web Forms for Marketers\Settings\Meta data\File Types\Application XShockwaveFlash.item" />
+    <None Include="serialization\master\sitecore\system\Modules\Web Forms for Marketers\Settings\Meta data\File Types\Application XZipCompressed.item" />
+    <None Include="serialization\master\sitecore\system\Modules\Web Forms for Marketers\Settings\Meta data\File Types\Audio MPeg.item" />
+    <None Include="serialization\master\sitecore\system\Modules\Web Forms for Marketers\Settings\Meta data\File Types\Audio Ogg.item" />
+    <None Include="serialization\master\sitecore\system\Modules\Web Forms for Marketers\Settings\Meta data\File Types\Audio XMsWma.item" />
+    <None Include="serialization\master\sitecore\system\Modules\Web Forms for Marketers\Settings\Meta data\File Types\Audio XWav.item" />
+    <None Include="serialization\master\sitecore\system\Modules\Web Forms for Marketers\Settings\Meta data\File Types\Image Bmp.item" />
+    <None Include="serialization\master\sitecore\system\Modules\Web Forms for Marketers\Settings\Meta data\File Types\Image Gif.item" />
+    <None Include="serialization\master\sitecore\system\Modules\Web Forms for Marketers\Settings\Meta data\File Types\Image Jpeg.item" />
+    <None Include="serialization\master\sitecore\system\Modules\Web Forms for Marketers\Settings\Meta data\File Types\Image Png.item" />
+    <None Include="serialization\master\sitecore\system\Modules\Web Forms for Marketers\Settings\Meta data\File Types\Image Tiff.item" />
+    <None Include="serialization\master\sitecore\system\Modules\Web Forms for Marketers\Settings\Meta data\File Types\Image XIcon.item" />
+    <None Include="serialization\master\sitecore\system\Modules\Web Forms for Marketers\Settings\Meta data\File Types\Video Ogg.item" />
+    <None Include="serialization\master\sitecore\system\Modules\Web Forms for Marketers\Settings\Meta data\File Types\Video XMsVideo.item" />
+    <None Include="serialization\master\sitecore\system\Modules\Web Forms for Marketers\Settings\Meta data\File Types\Video xMsWmv.item" />
+    <None Include="serialization\master\sitecore\system\Modules\Web Forms for Marketers\Settings\Validation\Secure File upload.item" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
