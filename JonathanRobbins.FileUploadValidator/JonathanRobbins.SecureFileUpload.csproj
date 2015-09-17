@@ -7,8 +7,8 @@
     <ProjectGuid>{B638B02A-761D-4482-8663-1260083961D4}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>JonathanRobbins.FileUploadValidator</RootNamespace>
-    <AssemblyName>JonathanRobbins.FileUploadValidator</AssemblyName>
+    <RootNamespace>JonathanRobbins.SecureFileUpload</RootNamespace>
+    <AssemblyName>JonathanRobbins.SecureFileUpload</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
