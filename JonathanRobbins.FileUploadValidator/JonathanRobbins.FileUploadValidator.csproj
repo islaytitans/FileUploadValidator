@@ -59,7 +59,8 @@
     <Compile Include="Models\FileType.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Webforms\Controls\SecureFileUpload.cs" />
-    <Compile Include="Webforms\Validators\FileUploadValidator.cs" />
+    <Compile Include="Webforms\Validators\FileSizeValiadtor.cs" />
+    <Compile Include="Webforms\Validators\FileTypeValidator.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="serialization\master\sitecore\system\Modules\Web Forms for Marketers\Sample forms\Upload a Secure File.item" />
