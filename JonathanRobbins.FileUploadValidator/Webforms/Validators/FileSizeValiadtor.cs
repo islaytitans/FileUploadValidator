@@ -51,21 +51,37 @@ namespace JonathanRobbins.SecureFileUpload.Webforms.Validators
 
         private bool ValidateFileSize(HttpPostedFile postedFile)
         {
-            int fileSizeLimitinBytes = DetermineFileSizeLimit();
+            bool valid = false;
 
-            int sizeInBytes = postedFile.ContentLength;
+            int? fileSizeLimitinBytes = DetermineFileSizeLimit();
 
-            return (sizeInBytes <= fileSizeLimitinBytes);
+            if (fileSizeLimitinBytes.HasValue)
+            {
+                int sizeInBytes = postedFile.ContentLength;
+
+                valid = (sizeInBytes <= fileSizeLimitinBytes);
+            }
+            else
+            {
+                // No file size limit
+                valid = true;
+            }
+
+            return valid;
         }
 
-        private int DetermineFileSizeLimit()
+        private int? DetermineFileSizeLimit()
         {
-            int fileSizeLimitinBytes = 0;
+            int? fileSizeLimitinBytes = null;
 
             var regexfileSizeLimit = new Regex(@"<filesizelimit>(.*?)</filesizelimit>".ToLower());
             var fileSizeLimitNodes = regexfileSizeLimit.Matches(FieldItem["Parameters"].ToLower());
 
-            if (fileSizeLimitNodes.Count > 0)
+            bool limitDefined = (from Match limit in fileSizeLimitNodes
+                where limit.Groups[1] != null && !string.IsNullOrEmpty(limit.Groups[1].Value)
+                select limit).Any();
+
+            if (fileSizeLimitNodes.Count > 0 && limitDefined)
             {
                 double intOut = 0;
                 double fileSizeLimitinMegaBytes = 0;

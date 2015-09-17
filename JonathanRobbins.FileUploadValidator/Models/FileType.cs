@@ -1,5 +1,4 @@
-﻿using JonathanRobbins.FileUploadValidator.Enums;
-using JonathanRobbins.SecureFileUpload.Enums;
+﻿using JonathanRobbins.SecureFileUpload.Enums;
 using JonathanRobbins.SecureFileUpload.Interfaces;
 using JonathanRobbins.SecureFileUpload.IO;
 using Sitecore.Data.Items;

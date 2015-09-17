@@ -13,7 +13,6 @@ using ListItemCollection = System.Web.UI.WebControls.ListItemCollection;
 
 namespace JonathanRobbins.SecureFileUpload.Webforms.Controls
 {
-    //[Adapter(typeof(ListControlAdapter))]
     [ListAdapter("Items", typeof(ListItemsAdapter))]
     [Adapter(typeof(FileUploadAdapter))]
     public class SecureFileUpload : ValidateControl, IHasTitle
@@ -26,11 +25,6 @@ namespace JonathanRobbins.SecureFileUpload.Webforms.Controls
         private ListItemCollection _items;
         private ListItemCollection _selectedItems;
         private string _uploadDir = "/sitecore/media library";
-
-        //protected System.Web.UI.WebControls.ListControl InnerListControl
-        //{
-        //    get { throw new NotImplementedException(); }
-        //}
 
         public override string ID
         {
@@ -122,13 +116,12 @@ namespace JonathanRobbins.SecureFileUpload.Webforms.Controls
             this.Controls.AddAt(0, (Control)this.title);
             this.generalPanel.Controls.AddAt(0, (Control)this.help);
             this.generalPanel.Controls.AddAt(0, (Control)this.upload);
-            this.InitItems(this._items);
         }
 
         [PersistenceMode(PersistenceMode.InnerProperty)]
         [DesignerSerializationVisibility(DesignerSerializationVisibility.Content)]
         [Browsable(false)]
-        [VisualCategory("List")]
+        [VisualCategory("File Types")]
         [VisualFieldType(typeof(ListField))]
         [TypeConverter(typeof(ListItemCollectionConverter))]
         [DefaultValue("%3cquery+t%3d%22root%22+vf%3d%22__ID%22%3e%3cvalue%3e%7b7C75E0B5-3C17-4471-9F81-0490306EC71E%7d%3c%2fvalue%3e%3c%2fquery%3e")]
@@ -148,7 +141,7 @@ namespace JonathanRobbins.SecureFileUpload.Webforms.Controls
 
         [TypeConverter(typeof(ListItemCollectionConverter))]
         [VisualFieldType(typeof(MultipleSelectedValueField))]
-        [VisualCategory("List")]
+        [VisualCategory("File Types")]
         [Browsable(false)]
         [VisualProperty("Selected Values:", 450)]
         public ListItemCollection SelectedValue
@@ -163,46 +156,8 @@ namespace JonathanRobbins.SecureFileUpload.Webforms.Controls
             }
         }
 
-        public override string DefaultValue
-        {
-            set
-            {
-                //this.SelectedValue = (ListItemCollection)value;
-            }
-        }
-
-        protected virtual void InitItems(ListItemCollection collection)
-        {
-            if (collection == null)
-                collection = new ListItemCollection();
-            //this.InnerListControl.Items.Clear();
-            //this.InnerListControl.Items.AddRange(collection.Cast<ListItem>().ToArray());
-            if (this._selectedItems == null)
-                return;
-            foreach (ListItem listItem in this._selectedItems)
-            {
-                //ListItem byValue = this.InnerListControl.Items.FindByValue(listItem.Value);
-                //if (byValue != null)
-                //    byValue.Selected = true;
-            }
-        }
-
-        protected override void OnPreRender(EventArgs e)
-        {
-            //if (this.KeepHiddenValue && Settings.IsAnalyticsEnabled && this.FindControl(this.ID + "_complexvalue") == null)
-            //{
-            //    HiddenField hiddenField = new HiddenField();
-            //    hiddenField.ID = this.ID + "_complexvalue";
-            //    hiddenField.Value = (string)this.Result.Value;
-            //    this.Controls.AddAt(0, (Control)hiddenField);
-            //}
-            //this.title.AssociatedControlID = this.InnerListControl.ID;
-            base.OnPreRender(e);
-        }
-
-        [DefaultValue(5)]
         [VisualFieldType(typeof(EditField))]
-        [VisualProperty("File size limit (MB) :", 5)]
+        [VisualProperty("Max file size limit (MB) :", 5)]
         [VisualCategory("Upload")]
         public string FileSizeLimit
         {
