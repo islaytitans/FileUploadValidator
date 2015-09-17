@@ -1,10 +1,10 @@
 ----item----
 version: 1
-id: {789E978C-5DDF-48C6-A6DE-103057B888F5}
+id: {04011251-BF7C-41E9-9D97-B2984C98037F}
 database: master
-path: /sitecore/system/Modules/Web Forms for Marketers/Settings/Validation/Secure File upload
+path: /sitecore/system/Modules/Web Forms for Marketers/Settings/Validation/File size
 parent: {99C43AFC-7947-4CCA-9585-52F5EC673A2C}
-name: Secure File upload
+name: File size
 master: {00000000-0000-0000-0000-000000000000}
 template: {3D51C8A9-246F-4EA4-A244-6580BDF73024}
 templatekey: BaseValidator
@@ -13,49 +13,49 @@ templatekey: BaseValidator
 field: {2A29BFAC-1CD0-4AC9-9053-19BE2473200D}
 name: Assembly
 key: assembly
-content-length: 39
+content-length: 36
 
-JonathanRobbins.FileUploadValidator.dll
+JonathanRobbins.SecureFileUpload.dll
 ----field----
 field: {F062D792-ECDE-41EB-811F-9CC68F7B4082}
 name: Class
 key: class
-content-length: 75
+content-length: 70
 
-JonathanRobbins.FileUploadValidator.Webforms.Validators.FileUploadValidator
+JonathanRobbins.SecureFileUpload.Webforms.Validators.FileSizeValiadtor
 ----version----
 language: en
 version: 1
-revision: d2955981-cd08-44a4-82df-6cb4b61ebadc
+revision: 498c27c8-18a9-44d7-aaa2-5da3796aa2cc
 
 ----field----
 field: {7AAA88B1-E696-4956-9215-1FAA3EC42607}
 name: Error Message
 key: error message
-content-length: 32
+content-length: 26
 
-This type of file is not allowed
+The file size is too large
 ----field----
 field: {25BED78C-4957-4165-998A-CA1B52F67497}
 name: __Created
 key: __created
 content-length: 16
 
-20150717T133034Z
+20150917T121622Z
 ----field----
 field: {8CDC337E-A112-42FB-BBB4-4143751E123F}
 name: __Revision
 key: __revision
 content-length: 36
 
-d2955981-cd08-44a4-82df-6cb4b61ebadc
+498c27c8-18a9-44d7-aaa2-5da3796aa2cc
 ----field----
 field: {D9CF14B1-FA16-4BA6-9288-E8A174D4D522}
 name: __Updated
 key: __updated
 content-length: 35
 
-20150914T123543:635778309432231894Z
+20150917T121730:635780890501984726Z
 ----field----
 field: {BADD9CF9-53E0-4D0C-BCC0-2D784C282F6A}
 name: __Updated by

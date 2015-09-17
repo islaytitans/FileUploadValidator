@@ -90,8 +90,10 @@
     <None Include="serialization\master\sitecore\system\Modules\Web Forms for Marketers\Settings\Meta data\File Types\Video Ogg.item" />
     <None Include="serialization\master\sitecore\system\Modules\Web Forms for Marketers\Settings\Meta data\File Types\Video XMsVideo.item" />
     <None Include="serialization\master\sitecore\system\Modules\Web Forms for Marketers\Settings\Meta data\File Types\Video xMsWmv.item" />
-    <None Include="serialization\master\sitecore\system\Modules\Web Forms for Marketers\Settings\Validation\Secure File upload.item" />
+    <None Include="serialization\master\sitecore\system\Modules\Web Forms for Marketers\Settings\Validation\File size.item" />
+    <None Include="serialization\master\sitecore\system\Modules\Web Forms for Marketers\Settings\Validation\File type.item" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
