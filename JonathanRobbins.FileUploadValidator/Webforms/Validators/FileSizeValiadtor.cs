@@ -11,7 +11,7 @@ namespace JonathanRobbins.SecureFileUpload.Webforms.Validators
 {
     public class FileSizeValiadtor : FormCustomValidator
     {
-        private int MegaByteByteRaio = 1048576;
+        private double MegaByteByteRaio = 1048576;
 
         private Item _fieldItem;
         private Item FieldItem
@@ -89,17 +89,17 @@ namespace JonathanRobbins.SecureFileUpload.Webforms.Validators
                                             where limit.Groups[1] != null
                                             && !string.IsNullOrEmpty(limit.Groups[1].Value)
                                             && double.TryParse(limit.Groups[1].Value, out intOut)
-                                            select int.Parse((limit.Groups[1].Value))).FirstOrDefault();
+                                            select double.Parse((limit.Groups[1].Value))).FirstOrDefault();
 
-                fileSizeLimitinBytes = MegaBytesToBytes(Convert.ToInt32(fileSizeLimitinMegaBytes));
+                fileSizeLimitinBytes = MegaBytesToBytes(fileSizeLimitinMegaBytes);
             }
 
             return fileSizeLimitinBytes;
         }
 
-        private int MegaBytesToBytes(int megaBytes)
+        private int MegaBytesToBytes(double megaBytes)
         {
-            return megaBytes * MegaByteByteRaio;
+            return (int)(megaBytes * MegaByteByteRaio);
         }
     }
 }

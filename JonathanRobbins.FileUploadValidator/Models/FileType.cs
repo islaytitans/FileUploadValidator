@@ -27,7 +27,9 @@ namespace JonathanRobbins.SecureFileUpload.Models
 
         public FileType(Item item)
         {
-            if (item == null)
+            if (item == null 
+                || string.IsNullOrEmpty(item[FieldNames.MimeType]) 
+                || string.IsNullOrEmpty(item[FieldNames.ByteArray]))
                 return;
 
             IMimeTypeUtil mimeTypeUtil = new MimeTypeUtil();
