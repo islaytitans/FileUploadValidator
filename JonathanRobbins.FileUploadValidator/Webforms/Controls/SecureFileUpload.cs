@@ -1,21 +1,17 @@
-﻿using Sitecore.Form.Core.Attributes;
-using Sitecore.Form.Core.Configuration;
+﻿using System;
+using System.ComponentModel;
+using System.Web.UI;
+using System.Web.UI.WebControls;
+using Sitecore.Form.Core.Attributes;
 using Sitecore.Form.Core.Controls.Data;
+using Sitecore.Form.Core.Media;
 using Sitecore.Form.Core.Visual;
 using Sitecore.Form.UI.Adapters;
 using Sitecore.Form.UI.Converters;
-using System;
-using System.ComponentModel;
-using System.Linq;
-using System.Text;
-using System.Web;
-using System.Web.UI;
-using System.Web.UI.WebControls;
-using Sitecore.Form.Core.Media;
 using Sitecore.Form.Web.UI.Controls;
 using ListItemCollection = System.Web.UI.WebControls.ListItemCollection;
 
-namespace JonathanRobbins.FileUploadValidator.Webforms.Controls
+namespace JonathanRobbins.SecureFileUpload.Webforms.Controls
 {
     //[Adapter(typeof(ListControlAdapter))]
     [ListAdapter("Items", typeof(ListItemsAdapter))]

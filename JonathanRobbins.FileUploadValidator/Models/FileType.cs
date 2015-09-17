@@ -1,14 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using JonathanRobbins.FileUploadValidator.Enums;
-using JonathanRobbins.FileUploadValidator.Interfaces;
-using JonathanRobbins.FileUploadValidator.IO;
+﻿using JonathanRobbins.FileUploadValidator.Enums;
+using JonathanRobbins.SecureFileUpload.Enums;
+using JonathanRobbins.SecureFileUpload.Interfaces;
+using JonathanRobbins.SecureFileUpload.IO;
 using Sitecore.Data.Items;
 
-namespace JonathanRobbins.FileUploadValidator.Models
+namespace JonathanRobbins.SecureFileUpload.Models
 {
     public class FileType
     {

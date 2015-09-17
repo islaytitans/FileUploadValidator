@@ -1,16 +1,13 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using System.Text.RegularExpressions;
-using System.Threading.Tasks;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using Sitecore.Data.Items;
 using Sitecore.Form.Core.Validators;
 
-namespace JonathanRobbins.FileUploadValidator.Webforms.Validators
+namespace JonathanRobbins.SecureFileUpload.Webforms.Validators
 {
     public class FileSizeValiadtor : FormCustomValidator
     {

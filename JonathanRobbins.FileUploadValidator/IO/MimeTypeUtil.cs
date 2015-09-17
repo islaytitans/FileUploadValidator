@@ -2,14 +2,12 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using JonathanRobbins.FileUploadValidator.Enums.IO;
-using JonathanRobbins.FileUploadValidator.Interfaces;
-using JonathanRobbins.FileUploadValidator.Models;
+using JonathanRobbins.SecureFileUpload.Enums.IO;
+using JonathanRobbins.SecureFileUpload.Interfaces;
+using JonathanRobbins.SecureFileUpload.Models;
 using Sitecore.Diagnostics;
 
-namespace JonathanRobbins.FileUploadValidator.IO
+namespace JonathanRobbins.SecureFileUpload.IO
 {
     public class MimeTypeUtil : IMimeTypeUtil
     {

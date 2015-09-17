@@ -1,12 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using JonathanRobbins.FileUploadValidator.IO;
-using JonathanRobbins.FileUploadValidator.Models;
+﻿using System.Collections.Generic;
+using JonathanRobbins.SecureFileUpload.Models;
 
-namespace JonathanRobbins.FileUploadValidator.Interfaces
+namespace JonathanRobbins.SecureFileUpload.Interfaces
 {
     public interface IMimeTypeUtil
     {

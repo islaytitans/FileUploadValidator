@@ -2,24 +2,18 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-using System.Text;
 using System.Text.RegularExpressions;
-using System.Threading.Tasks;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
-using System.Xml;
-using System.Xml.Linq;
-using JonathanRobbins.FileUploadValidator.Enums.IO;
-using JonathanRobbins.FileUploadValidator.Interfaces;
-using JonathanRobbins.FileUploadValidator.IO;
-using JonathanRobbins.FileUploadValidator.Models;
-using JonathanRobbins.FileUploadValidator.Webforms.Controls;
+using JonathanRobbins.SecureFileUpload.Interfaces;
+using JonathanRobbins.SecureFileUpload.IO;
+using JonathanRobbins.SecureFileUpload.Models;
 using Sitecore.Data.Items;
 using Sitecore.Diagnostics;
 using Sitecore.Form.Core.Validators;
 
-namespace JonathanRobbins.FileUploadValidator.Webforms.Validators
+namespace JonathanRobbins.SecureFileUpload.Webforms.Validators
 {
     public class FileTypeValidator : FormCustomValidator
     {
