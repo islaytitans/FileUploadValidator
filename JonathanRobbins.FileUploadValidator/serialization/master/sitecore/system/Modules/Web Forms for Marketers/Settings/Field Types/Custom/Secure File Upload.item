@@ -13,16 +13,16 @@ templatekey: Field Type
 field: {2A29BFAC-1CD0-4AC9-9053-19BE2473200D}
 name: Assembly
 key: assembly
-content-length: 39
+content-length: 36
 
-JonathanRobbins.FileUploadValidator.dll
+JonathanRobbins.SecureFileUpload.dll
 ----field----
 field: {F062D792-ECDE-41EB-811F-9CC68F7B4082}
 name: Class
 key: class
-content-length: 70
+content-length: 67
 
-JonathanRobbins.FileUploadValidator.Webforms.Controls.SecureFileUpload
+JonathanRobbins.SecureFileUpload.Webforms.Controls.SecureFileUpload
 ----field----
 field: {C117FA3E-2A0C-45EC-894D-2D5A2A8AFD1F}
 name: MVC Type
@@ -41,9 +41,9 @@ content-length: 1
 field: {0C81192B-BE98-4033-8748-1296B2BCBC2F}
 name: Validation
 key: validation
-content-length: 38
+content-length: 77
 
-{789E978C-5DDF-48C6-A6DE-103057B888F5}
+{789E978C-5DDF-48C6-A6DE-103057B888F5}|{04011251-BF7C-41E9-9D97-B2984C98037F}
 ----field----
 field: {358E7AA0-E3E6-4EF6-92DF-EC1301737B50}
 name: Parameters
@@ -372,7 +372,7 @@ sitecore\admin
 ----version----
 language: en
 version: 1
-revision: cb905241-45c5-41aa-883a-b6264bd9fcfc
+revision: 2949eb1d-7982-4f3f-a2be-86b54b85a18f
 
 ----field----
 field: {26CDC7C2-5307-4591-A7F9-5C034A05630A}
@@ -450,14 +450,14 @@ name: __Revision
 key: __revision
 content-length: 36
 
-cb905241-45c5-41aa-883a-b6264bd9fcfc
+2949eb1d-7982-4f3f-a2be-86b54b85a18f
 ----field----
 field: {D9CF14B1-FA16-4BA6-9288-E8A174D4D522}
 name: __Updated
 key: __updated
 content-length: 35
 
-20150916T121138:635780022980963024Z
+20150917T122906:635780897461238646Z
 ----field----
 field: {BADD9CF9-53E0-4D0C-BCC0-2D784C282F6A}
 name: __Updated by
